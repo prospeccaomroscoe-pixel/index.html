@@ -43,6 +43,12 @@
     </script>
 
     <style>
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; }
+        .custom-scrollbar::-webkit-scrollbar { height: 10px; width: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
         body {
             background-color: #F4F6F9;
             color: #1E293B;
@@ -172,7 +178,7 @@
 
     <!-- TOP BAR: Estilo Google Looker Studio Header com Identidade Oficial M.ROSCOE -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
-        <div class="max-w-[1640px] mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between py-2.5 sm:py-3 gap-2.5 sm:gap-3">
                 
                 <!-- Brand Logo Vetorial M.ROSCOE & Report Title -->
@@ -271,7 +277,7 @@
     </header>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-1 max-w-[1640px] w-full mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-5">
+    <main class="flex-1 max-w-[1920px] w-full mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-5">
 
         <!-- ===================================================================== -->
         <!-- PAGE 1: OPORTUNIDADES ATIVAS & PIPELINE                               -->
