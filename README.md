@@ -1,8 +1,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agente de Inteligência de Mercado | M.ROSCOE</title>
     
     <!-- Google Fonts: Inter (Estética Looker Studio) -->
@@ -11,13 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     
     <!-- Lucide Icons -->
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js" onerror="var t=document.createElement('script');t.src='https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js';document.head.appendChild(t);"></script>
     <script>window.safeIcons=function(){try{if(window.lucide&&lucide.createIcons)lucide.createIcons();}catch(e){}};window.addEventListener("load",function(){window.safeIcons();});</script>
 
     <script>
@@ -44,9 +43,6 @@
     </script>
 
     <style>
-        :root { color-scheme: light; box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
-        html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-
         body {
             background-color: #F4F6F9;
             color: #1E293B;
@@ -197,7 +193,7 @@
                                 </h1>
                                 <span class="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold text-[#EE7D26] bg-[#FFF4EC] border border-[#F59B4E]/60 px-2 py-0.5 rounded-full shrink-0">
                                     <i data-lucide="calendar" class="w-3 h-3"></i>
-                                    19/11/2026
+                                    23/11/2026
                                 </span>
                             </div>
                             <div class="text-[11px] sm:text-xs text-slate-500 mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5">
@@ -206,7 +202,7 @@
                                 <!-- Indicador de Sincronização Online em Tempo Real -->
                                 <span id="syncStatusIndicator" class="inline-flex items-center gap-1.5 font-semibold text-emerald-700">
                                     <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-[#0F9D58]"></span>
-                                    <span id="syncStatusText">Salvo neste navegador</span>
+                                    <span id="syncStatusText">Sincronizado online</span>
                                 </span>
                             </div>
                         </div>
@@ -241,19 +237,19 @@
                         <span>CSV</span>
                     </button>
 
-                    <button onclick="overwriteLocalFile()" style="display:none" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 px-2.5 py-1.5 rounded-md shadow-2xs transition cursor-pointer" title="Sobrescrever o mesmo arquivo .html no computador sem criar cópias">
+                    <button onclick="overwriteLocalFile()" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 px-2.5 py-1.5 rounded-md shadow-2xs transition cursor-pointer" title="Sobrescrever o mesmo arquivo .html no computador sem criar cópias">
                         <i data-lucide="file-check-2" class="w-3.5 h-3.5 text-[#EE7D26]"></i>
                         <span>Sobrescrever Local</span>
                     </button>
 
-                    <button onclick="copyShareableLink()" style="display:none" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#EE7D26] bg-[#FFF4EC] hover:bg-[#FDE6D4] border border-[#F59B4E] px-3 py-1.5 rounded-md transition cursor-pointer" title="Copiar link online já contendo todos os status atualizados">
+                    <button onclick="copyShareableLink()" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#EE7D26] bg-[#FFF4EC] hover:bg-[#FDE6D4] border border-[#F59B4E] px-3 py-1.5 rounded-md transition cursor-pointer" title="Copiar link online já contendo todos os status atualizados">
                         <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
                         <span id="shareLinkBtnText">Copiar Link Atualizado</span>
                     </button>
 
                     <button onclick="saveOnlineNow()" class="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#EE7D26] hover:bg-[#D66914] px-3.5 py-1.5 rounded-md shadow-xs transition cursor-pointer" title="Sincronizar e salvar na versão online sem gerar cópias de arquivo">
                         <i data-lucide="cloud-upload" class="w-3.5 h-3.5"></i>
-                        <span>Salvar</span>
+                        <span>Salvar Online</span>
                     </button>
                 </div>
             </div>
@@ -263,7 +259,7 @@
                 <button id="tabBtnOverview" onclick="switchTab('overview')" class="tab-active flex items-center gap-2 px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition cursor-pointer rounded-t-md">
                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
                     <span>1. Oportunidades Ativas &amp; Pipeline</span>
-                    <span id="badgeCountOverview" class="ml-1 text-xs bg-[#FDE6D4] text-[#D66914] px-2 py-0.5 rounded-full font-bold">21</span>
+                    <span id="badgeCountOverview" class="ml-1 text-xs bg-[#FDE6D4] text-[#D66914] px-2 py-0.5 rounded-full font-bold">24</span>
                 </button>
                 <button id="tabBtnDiscarded" onclick="switchTab('discarded')" class="tab-inactive flex items-center gap-2 px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition cursor-pointer rounded-t-md">
                     <i data-lucide="archive" class="w-4 h-4"></i>
@@ -292,7 +288,7 @@
                     </span>
                     <i id="mobileFilterChevron" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
                 </button>
-                <button onclick="copyShareableLink()" style="display:none" class="looker-card px-3 py-2.5 flex items-center gap-1.5 text-xs font-bold text-[#EE7D26] active:bg-[#FFF4EC] shrink-0 cursor-pointer" title="Compartilhar link atualizado">
+                <button onclick="copyShareableLink()" class="looker-card px-3 py-2.5 flex items-center gap-1.5 text-xs font-bold text-[#EE7D26] active:bg-[#FFF4EC] shrink-0 cursor-pointer" title="Compartilhar link atualizado">
                     <i data-lucide="share-2" class="w-4 h-4"></i>
                     <span>Link</span>
                 </button>
@@ -309,7 +305,7 @@
                         </label>
                         <div class="looker-control relative">
                             <select id="filterAgendor" onchange="applyFilters()" class="w-full appearance-none bg-transparent pl-3 pr-8 py-2 text-xs sm:text-sm font-medium text-slate-800 focus:outline-none cursor-pointer">
-                                <option value="ALL">Todos os Status Agendor (21)</option>
+                                <option value="ALL">Todos os Status Agendor (24)</option>
                                 <option value="Adicionar Oportunidade no Agendor">Adicionar Oportunidade no Agendor</option>
                                 <option value="Oportunidade já adicionada no Agendor">Oportunidade já adicionada no Agendor</option>
                                 <option value="Desconsiderar oportunidade">Desconsiderar oportunidade</option>
@@ -442,9 +438,9 @@
                             </div>
                         </div>
                         <div class="my-1.5 sm:my-2">
-                            <div id="kpiTotalObras" class="text-2xl sm:text-3xl font-bold text-[#1A1A1A] tracking-tight">21 obras</div>
+                            <div id="kpiTotalObras" class="text-2xl sm:text-3xl font-bold text-[#1A1A1A] tracking-tight">24 obras</div>
                         </div>
-                        <div id="kpiTotalSub" class="text-xs text-slate-500 pt-2 border-t border-slate-100 leading-snug">16 com CAPEX informado (+5 N/D)</div>
+                        <div id="kpiTotalSub" class="text-xs text-slate-500 pt-2 border-t border-slate-100 leading-snug">19 com CAPEX informado (+5 N/D)</div>
                     </div>
 
                     <!-- KPI 2: CAPEX Total Mapeado -->
@@ -456,9 +452,9 @@
                             </div>
                         </div>
                         <div class="my-1.5 sm:my-2">
-                            <div id="kpiTotalCapex" class="text-2xl sm:text-3xl font-bold text-[#EE7D26] tracking-tight">R$ 82,18 bi</div>
+                            <div id="kpiTotalCapex" class="text-2xl sm:text-3xl font-bold text-[#EE7D26] tracking-tight">R$ 82,99 bi</div>
                         </div>
-                        <div id="kpiCapexSub" class="text-xs text-slate-500 pt-2 border-t border-slate-100 leading-snug">R$ 82.180 mi somados na base filtrada</div>
+                        <div id="kpiCapexSub" class="text-xs text-slate-500 pt-2 border-t border-slate-100 leading-snug">R$ 82.990 mi somados na base filtrada</div>
                     </div>
 
                     <!-- KPI 3: Adicionar no Agendor (Destaque Laranja M.ROSCOE) -->
@@ -470,9 +466,9 @@
                             </div>
                         </div>
                         <div class="my-1.5 sm:my-2 flex items-baseline gap-2">
-                            <div id="kpiAddCount" class="text-2xl sm:text-3xl font-bold text-[#EE7D26] tracking-tight">13 obras</div>
+                            <div id="kpiAddCount" class="text-2xl sm:text-3xl font-bold text-[#EE7D26] tracking-tight">16 obras</div>
                         </div>
-                        <div id="kpiAddCapex" class="text-xs font-semibold text-[#B85309] bg-[#FFF4EC] px-2 py-1 rounded border border-[#F59B4E]/50">CAPEX: R$ 64,82 bi</div>
+                        <div id="kpiAddCapex" class="text-xs font-semibold text-[#B85309] bg-[#FFF4EC] px-2 py-1 rounded border border-[#F59B4E]/50">CAPEX: R$ 65,63 bi</div>
                     </div>
 
                     <!-- KPI 4: Já no Agendor (Verde Esmeralda) -->
@@ -547,21 +543,21 @@
                                 <span class="w-2.5 h-2.5 rounded-full bg-[#EE7D26] shrink-0"></span>
                                 <span class="truncate">Adicionar no Agendor</span>
                             </span>
-                            <span id="legendAgendorAdd" class="font-bold text-slate-900 shrink-0">13 (61,9%)</span>
+                            <span id="legendAgendorAdd" class="font-bold text-slate-900 shrink-0">16 (66,7%)</span>
                         </div>
                         <div class="flex items-center justify-between gap-2">
                             <span class="flex items-center gap-1.5 font-medium text-slate-700 truncate">
                                 <span class="w-2.5 h-2.5 rounded-full bg-[#0F9D58] shrink-0"></span>
                                 <span class="truncate">Já adicionada no Agendor</span>
                             </span>
-                            <span id="legendAgendorAdded" class="font-bold text-slate-900 shrink-0">6 (28,6%)</span>
+                            <span id="legendAgendorAdded" class="font-bold text-slate-900 shrink-0">6 (25,0%)</span>
                         </div>
                         <div class="flex items-center justify-between gap-2">
                             <span class="flex items-center gap-1.5 font-medium text-slate-700 truncate">
                                 <span class="w-2.5 h-2.5 rounded-full bg-[#5F6368] shrink-0"></span>
                                 <span class="truncate">Desconsiderar</span>
                             </span>
-                            <span id="legendAgendorDiscard" class="font-bold text-slate-900 shrink-0">2 (9,5%)</span>
+                            <span id="legendAgendorDiscard" class="font-bold text-slate-900 shrink-0">2 (8,3%)</span>
                         </div>
                     </div>
                 </div>
@@ -588,7 +584,7 @@
                     <div>
                         <div class="flex items-center gap-2">
                             <h2 class="text-sm sm:text-base font-bold text-slate-900">Oportunidades Mapeadas &amp; Triagem Agendor</h2>
-                            <span id="tableRowCountBadge" class="text-xs font-bold bg-[#FFF4EC] text-[#EE7D26] border border-[#F59B4E]/50 px-2 py-0.5 rounded-full">21 registros</span>
+                            <span id="tableRowCountBadge" class="text-xs font-bold bg-[#FFF4EC] text-[#EE7D26] border border-[#F59B4E]/50 px-2 py-0.5 rounded-full">24 registros</span>
                         </div>
                         <p class="text-xs text-slate-500 mt-0.5">Altere o <strong>Status Agendor</strong> diretamente para sincronizar online ou toque em <strong>Ver Dossiê</strong>.</p>
                     </div>
@@ -649,7 +645,7 @@
                 <!-- Table Footer -->
                 <div class="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[11px] text-slate-500">
                     <div>
-                        Fonte: <span class="font-medium text-slate-700">Relatorio_Prospeccao_MRoscoe_2026-11-19.xlsx</span> • Sincronizado na versão online sem criar cópias
+                        Fonte: <span class="font-medium text-slate-700">Relatorio_Prospeccao_MRoscoe_2026-11-23.xlsx</span> • Sincronizado na versão online sem criar cópias
                     </div>
                     <div class="flex flex-wrap items-center gap-3">
                         <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#EE7D26]"></span> Adicionar no Agendor</span>
@@ -671,7 +667,7 @@
                 <div>
                     <h2 class="text-sm sm:text-base font-bold text-slate-900">Descartados, Monitorar &amp; Metodologia M.ROSCOE</h2>
                     <p class="text-xs sm:text-sm text-slate-600 mt-1">
-                        Registro dos 7 itens analisados na semana de <strong>16/11/2026</strong> filtrados fora do pipeline ativo (obras já contratadas/inauguradas, operações de M&amp;A, editais de P&amp;D ou escopo a confirmar).
+                        Registro dos 7 itens analisados na semana de <strong>23/11/2026</strong> filtrados fora do pipeline ativo (obras já contratadas/inauguradas, operações de M&amp;A, editais de P&amp;D ou escopo a confirmar).
                     </p>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
@@ -731,7 +727,7 @@
                     <ul class="space-y-2.5 text-xs text-slate-600 leading-relaxed">
                         <li class="flex items-start gap-2">
                             <i data-lucide="check-circle-2" class="w-4 h-4 text-[#EE7D26] shrink-0 mt-0.5"></i>
-                            <span><strong>Data-base da varredura:</strong> Busca web estruturada e leitura dos e-mails da caixa de prospecção realizadas entre <strong>16 e 19/11/2026</strong>, cobrindo anúncios de maio/2025 a novembro/2026.</span>
+                            <span><strong>Data-base da varredura:</strong> Busca web estruturada e leitura dos e-mails da caixa de prospecção realizadas entre <strong>16 e 23/11/2026</strong>, cobrindo anúncios de maio/2025 a novembro/2026.</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <i data-lucide="check-circle-2" class="w-4 h-4 text-[#EE7D26] shrink-0 mt-0.5"></i>
@@ -816,7 +812,7 @@
             <button id="mNavOpportunities" onclick="mobileNavigate('opportunities')" class="flex flex-col items-center justify-center gap-1 text-slate-500 font-semibold text-[10px] cursor-pointer relative">
                 <div class="relative">
                     <i data-lucide="building-2" class="w-4 h-4"></i>
-                    <span id="mNavOppBadge" class="absolute -top-1.5 -right-3 bg-[#EE7D26] text-white text-[9px] font-extrabold px-1 rounded-full">21</span>
+                    <span id="mNavOppBadge" class="absolute -top-1.5 -right-3 bg-[#EE7D26] text-white text-[9px] font-extrabold px-1 rounded-full">24</span>
                 </div>
                 <span>Oportunidades</span>
             </button>
@@ -967,7 +963,53 @@
     <!-- ===================================================================== -->
     <!-- JAVASCRIPT: SINCRONIZAÇÃO ONLINE, MOBILE NATIVE UI & CHART.JS         -->
     <!-- ===================================================================== -->
-    
+    <script type="module">
+        // Integração opcional automática com Firebase Firestore caso o ambiente forneça __firebase_config
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        async function initCloudSyncIfAvailable() {
+            try {
+                if (typeof __firebase_config === 'undefined' || !__firebase_config) return;
+                const firebaseConfig = JSON.parse(__firebase_config);
+                if (!firebaseConfig || !firebaseConfig.apiKey) return;
+
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'mroscoe-inteligencia-mercado';
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                if (!auth.currentUser) return;
+
+                const stateDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'agendor_triagem', 'semana_2026_11_16');
+                window._mroscoeCloudDocRef = stateDocRef;
+                window._mroscoeSetDoc = setDoc;
+
+                // Escuta atualizações em tempo real na nuvem sem criar cópias
+                onSnapshot(stateDocRef, (snapshot) => {
+                    if (snapshot.exists()) {
+                        const data = snapshot.data();
+                        if (data && data.statuses && typeof window.applyCloudStatuses === 'function') {
+                            window.applyCloudStatuses(data.statuses, data.updatedAt);
+                        }
+                    }
+                }, (err) => {
+                    console.warn('Firestore snapshot fallback para armazenamento online local/URL:', err);
+                });
+            } catch (err) {
+                console.warn('Modo online local/URL ativo:', err);
+            }
+        }
+
+        initCloudSyncIfAvailable();
+    </script>
 
     <script>
         const STORAGE_KEY = 'mroscoe_agendor_status_2026_11_16_v3';
@@ -1006,7 +1048,7 @@
 
         const MONTH_ORDER = ["Mai/2025", "Fev/2026", "Ago/2026", "Set/2026", "Out/2026", "Nov/2026"];
 
-        // 1. BASE DE DADOS DAS 21 OPORTUNIDADES (Semana de 16/11/2026 – atualizada em 19/11/2026)
+        // 1. BASE DE DADOS DAS 24 OPORTUNIDADES (Semana de 23/11/2026)
         const baseOpportunities = [
             {
                 id: 1,
@@ -1142,7 +1184,7 @@
                 uf: "MG",
                 contato: "Não divulgado",
                 temDecisor: false,
-                obs: "Janela ideal de relacionamento: obras só em 2027. O pacote inclui ainda Araras (SP, ~R$ 1 bi, cafés solúveis) e Montes Claros (MG, ~R$ 450 mi, cápsulas de café), ampliações brownfield que também cabem no perfil; confirmar escopo civil.",
+                obs: "Janela ideal de relacionamento: obras só em 2027. O pacote inclui ainda Araçatuba (SP, ~R$ 540 mi, nutrição e saúde), Araras (SP, ~R$ 1 bi, cafés solúveis) e Montes Claros (MG, ~R$ 450 mi, cápsulas de café), ampliações brownfield que também cabem no perfil; confirmar escopo civil.",
                 alerta: false,
                 link: "https://portal6.com.br/2026/11/16/nestle-anuncia-r-7-bilhoes-no-brasil-com-nova-fabrica-nova-e-deve-abrir-cerca-de-2-mil-empregos/"
             },
@@ -1193,8 +1235,77 @@
                 link: "https://www.brasil247.com/industria/chinesa-jetour-anuncia-fabrica-de-r-400-milhoes-no-rj-e-mira-expansao/"
             },
             {
-                id: 4,
+                id: 24,
                 numPlanilha: 9,
+                origem: "Agente IA",
+                prioridadeOrig: "Prioridade A",
+                defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
+                empresa: "Yanmar South America",
+                segmento: "Indústria da transformação",
+                escopo: "Nova fábrica de tratores com capacidade para 7 mil unidades/ano, em terreno três vezes maior que o atual; investimento em três etapas até 2030",
+                capexNum: 280,
+                capexTexto: "R$ 280 mi",
+                capexDetalhe: "R$ 280 milhões (1ª etapa: ~R$ 190 milhões)",
+                mes: "Nov/2026",
+                fonteTexto: "Click Petróleo e Gás (nov/2026), citando CNN Brasil",
+                cronograma: "1ª fase em operação em 2027; conclusão das etapas até 2030",
+                cidade: "Indaiatuba (SP)",
+                uf: "SP",
+                contato: "Não divulgado",
+                temDecisor: false,
+                obs: "Obra em andamento ou iminente. As etapas 2 e 3 (até 2030) são a oportunidade mais provável; verificar quem executa a 1ª fase.",
+                alerta: false,
+                link: "https://clickpetroleoegas.com.br/yanmar-nova-fabrica-indaiatuba-280-milhoes-rss94/"
+            },
+            {
+                id: 25,
+                numPlanilha: 10,
+                origem: "Agente IA",
+                prioridadeOrig: "Prioridade B",
+                defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
+                empresa: "Intelbras",
+                segmento: "Indústria da transformação",
+                escopo: "Nova fábrica 'Intelbras 2' (CFTV e segurança), com 52 mil m² de área construída em terreno de ~670 mil m²",
+                capexNum: 200,
+                capexTexto: "R$ 200 mi",
+                capexDetalhe: "R$ 200 milhões",
+                mes: "Ago/2026",
+                fonteTexto: "Revista PIM Amazônia (ago/2026)",
+                cronograma: "Operação prevista para meados de 2027; preparação do terreno já iniciada",
+                cidade: "Manaus (AM) – Polo Industrial",
+                uf: "AM",
+                contato: "Não divulgado",
+                temDecisor: false,
+                obs: "Notícia de agosto; obra provavelmente já contratada. Útil para acompanhar fases seguintes.",
+                alerta: false,
+                link: "https://pimamazonia.balponte.com.br/intelbras-fabrica-em-manaus-para-2027/"
+            },
+            {
+                id: 26,
+                numPlanilha: 11,
+                origem: "Agente IA",
+                prioridadeOrig: "Prioridade B",
+                defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
+                empresa: "WEG",
+                segmento: "Indústria da transformação",
+                escopo: "Fábrica de baterias, com investimento elevado e capacidade prevista dobrada",
+                capexNum: 330,
+                capexTexto: "R$ 330 mi",
+                capexDetalhe: "R$ 330 milhões",
+                mes: "Nov/2026",
+                fonteTexto: "Radar Capex (nov/2026)",
+                cronograma: "Datas não divulgadas na fonte",
+                cidade: "Itajaí (SC)",
+                uf: "SC",
+                contato: "Não divulgado",
+                temDecisor: false,
+                obs: "A fonte traz só a manchete; localizar a matéria completa para confirmar escopo e cronograma.",
+                alerta: false,
+                link: "https://radarcapex.com.br/investimentos/"
+            },
+            {
+                id: 4,
+                numPlanilha: 12,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade A",
                 defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
@@ -1217,7 +1328,7 @@
             },
             {
                 id: 5,
-                numPlanilha: 10,
+                numPlanilha: 13,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Oportunidade já adicionada no Agendor",
@@ -1240,7 +1351,7 @@
             },
             {
                 id: 6,
-                numPlanilha: 11,
+                numPlanilha: 14,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Oportunidade já adicionada no Agendor",
@@ -1263,7 +1374,7 @@
             },
             {
                 id: 7,
-                numPlanilha: 12,
+                numPlanilha: 15,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Oportunidade já adicionada no Agendor",
@@ -1286,7 +1397,7 @@
             },
             {
                 id: 8,
-                numPlanilha: 13,
+                numPlanilha: 16,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Oportunidade já adicionada no Agendor",
@@ -1309,7 +1420,7 @@
             },
             {
                 id: 17,
-                numPlanilha: 14,
+                numPlanilha: 17,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
@@ -1332,7 +1443,7 @@
             },
             {
                 id: 10,
-                numPlanilha: 15,
+                numPlanilha: 18,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Oportunidade já adicionada no Agendor",
@@ -1355,7 +1466,7 @@
             },
             {
                 id: 11,
-                numPlanilha: 16,
+                numPlanilha: 19,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Desconsiderar oportunidade",
@@ -1378,7 +1489,7 @@
             },
             {
                 id: 12,
-                numPlanilha: 17,
+                numPlanilha: 20,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Oportunidade já adicionada no Agendor",
@@ -1401,7 +1512,7 @@
             },
             {
                 id: 18,
-                numPlanilha: 18,
+                numPlanilha: 21,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
@@ -1424,7 +1535,7 @@
             },
             {
                 id: 14,
-                numPlanilha: 19,
+                numPlanilha: 22,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade B",
                 defaultAgendorStatus: "Desconsiderar oportunidade",
@@ -1447,7 +1558,7 @@
             },
             {
                 id: 19,
-                numPlanilha: 20,
+                numPlanilha: 23,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade C",
                 defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
@@ -1470,7 +1581,7 @@
             },
             {
                 id: 20,
-                numPlanilha: 21,
+                numPlanilha: 24,
                 origem: "Agente IA",
                 prioridadeOrig: "Prioridade C",
                 defaultAgendorStatus: "Adicionar Oportunidade no Agendor",
@@ -1614,7 +1725,6 @@
         }
 
         function decodeStateFromUrlHash() {
-            return {};
             try {
                 const hash = window.location.hash || '';
                 const match = hash.match(/agendor=([0-9:,AJD]+)/);
@@ -1633,7 +1743,6 @@
         }
 
         function syncUrlHashWithoutReload(stateMap) {
-            return;
             try {
                 const newHash = encodeStateToUrlHash(stateMap);
                 if (window.history && window.history.replaceState) {
@@ -1749,7 +1858,7 @@
 
         // Salva automaticamente na nuvem, na URL online e no armazenamento persistente sem criar cópias
         async function persistOnlineState(showToastMessage = false) {
-            updateSyncIndicator('saving', 'Salvando...');
+            updateSyncIndicator('saving', 'Salvando online...');
             const mapToSave = {};
             opportunitiesState.forEach(item => {
                 mapToSave[String(item.id)] = item.agendorStatus;
@@ -1776,10 +1885,10 @@
             }
 
             const nowStr = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-            updateSyncIndicator('synced', `Salvo neste navegador • ${nowStr}`);
+            updateSyncIndicator('synced', `Salvo online • ${nowStr}`);
 
             if (showToastMessage) {
-                showFloatingNotice(`Status salvos neste navegador (${nowStr}).`);
+                showFloatingNotice(`Versão online atualizada (${nowStr}) sem criar cópias!`);
             }
         }
 
@@ -1949,7 +2058,7 @@
 
             persistOnlineState(false);
             applyFilters();
-            showFloatingNotice('Status restaurados ao padrão original da planilha de 19/11/2026.');
+            showFloatingNotice('Status restaurados ao padrão original da planilha de 23/11/2026.');
         }
 
         // =========================================================================
@@ -2036,17 +2145,18 @@
             ].map(escapeCsvField).join(';'));
 
             const csvContent = '\uFEFF' + [headers.map(escapeCsvField).join(';'), ...rows].join('\r\n');
-            (async () => {
-                try {
-                    const dl = await claude.use('downloads');
-                    if (!dl) { showFloatingNotice('Exportação indisponível neste modo de visualização.'); return; }
-                    await dl.save({ filename: 'Relatorio_Prospeccao_MRoscoe_Agendor_2026-11-19.csv', data: csvContent });
-                    showFloatingNotice("Planilha <strong>CSV (Excel)</strong> exportada com sucesso.");
-                } catch (e) {
-                    if (!e || e.code !== 'declined') showFloatingNotice('Não foi possível exportar o CSV agora.');
-                }
-            })();
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
 
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Relatorio_Prospeccao_MRoscoe_Agendor_2026-11-23.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            setTimeout(() => URL.revokeObjectURL(url), 1500);
+
+            showFloatingNotice("Planilha <strong>CSV (Excel)</strong> exportada com sucesso.");
         }
 
         function getAgendorSelectClass(status) {
@@ -2764,7 +2874,7 @@
             const item = opportunitiesState.find(o => o.id === currentModalItemId);
             if (!item) return;
 
-            const text = `[M.ROSCOE Prospecção - Semana 16/11/2026]\nOrigem: ${item.origem} | Status Agendor: ${item.agendorStatus}\nEmpresa: ${item.empresa}\nSegmento: ${item.segmento}\nLocal: ${item.cidade}\nCAPEX: ${item.capexDetalhe} | Mês Captação: ${item.mes}\nCronograma: ${item.cronograma}\nEscopo: ${item.escopo}\nDecisor: ${item.contato}\nObs: ${item.obs}\nFonte (${item.fonteTexto}): ${item.link}`;
+            const text = `[M.ROSCOE Prospecção - Semana 23/11/2026]\nOrigem: ${item.origem} | Status Agendor: ${item.agendorStatus}\nEmpresa: ${item.empresa}\nSegmento: ${item.segmento}\nLocal: ${item.cidade}\nCAPEX: ${item.capexDetalhe} | Mês Captação: ${item.mes}\nCronograma: ${item.cronograma}\nEscopo: ${item.escopo}\nDecisor: ${item.contato}\nObs: ${item.obs}\nFonte (${item.fonteTexto}): ${item.link}`;
 
             const textarea = document.createElement('textarea');
             textarea.value = text;
